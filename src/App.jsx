@@ -12,6 +12,7 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState(null)
   const [history, setHistory] = useState(() => loadHistory())
+  const [formKey, setFormKey] = useState(0)
 
   async function handleSubmit(input) {
     setIsSubmitting(true)
@@ -46,6 +47,13 @@ export default function App() {
     setHistory([])
   }
 
+  function handleReset() {
+    setReport(null)
+    setFromCache(false)
+    setError(null)
+    setFormKey((key) => key + 1)
+  }
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -54,13 +62,26 @@ export default function App() {
       </header>
       <main className="app-main">
         <Disclaimer />
-        <SymptomForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+        <SymptomForm key={formKey} onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+        {isSubmitting && (
+          <div className="loading-row" aria-live="polite">
+            <span className="spinner" aria-hidden="true" />
+            Analizando síntomas…
+          </div>
+        )}
         {error && (
-          <div className="card error-box" role="alert">
+          <div className="card error-box" role="alert" aria-live="assertive">
             {error}
           </div>
         )}
-        <ReportView report={report} fromCache={fromCache} />
+        {report && !isSubmitting && (
+          <div aria-live="polite">
+            <ReportView report={report} fromCache={fromCache} />
+            <button type="button" className="reset-button" onClick={handleReset}>
+              Nueva consulta
+            </button>
+          </div>
+        )}
         <HistoryPanel
           history={history}
           onSelect={handleSelectHistory}
