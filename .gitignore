@@ -58,3 +58,4 @@ bin/
 Thumbs.db
 *.log
 *.tmp
+dist/
