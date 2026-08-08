@@ -1,9 +1,16 @@
-export default function ReportView({ report }) {
+export default function ReportView({ report, fromCache }) {
   if (!report) return null
 
   return (
     <section className="card report-view">
-      <h2>Análisis preliminar</h2>
+      <div className="report-header">
+        <h2>Análisis preliminar</h2>
+        {fromCache && (
+          <span className="badge cache-badge" title="Ya habías consultado esto — no se volvió a llamar a la IA">
+            desde historial
+          </span>
+        )}
+      </div>
 
       {report.posiblesCausas?.length > 0 && (
         <>
