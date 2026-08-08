@@ -1,0 +1,60 @@
+# SDD tooling state (local only)
+.atl/
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*_rsa
+*_rsa.pub
+secrets.*
+
+# Node
+node_modules/
+dist/
+build/
+.next/
+.nuxt/
+.cache/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Go
+/bin/
+/vendor/
+*.exe
+*.test
+
+# Java / Kotlin
+target/
+*.class
+.gradle/
+build/
+
+# .NET
+obj/
+bin/
+*.user
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
