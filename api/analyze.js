@@ -17,8 +17,13 @@ export default async function handler(req, res) {
 
   const { symptoms, severity } = req.body ?? {}
 
-  if (!symptoms || typeof symptoms !== 'string' || symptoms.trim().length < 10) {
-    return res.status(400).json({ error: 'Describí los síntomas con más detalle (mínimo 10 caracteres).' })
+  if (typeof symptoms !== 'string' || symptoms.trim().length < 10 || symptoms.trim().length > 500) {
+    return res.status(400).json({ error: 'Los síntomas deben tener entre 10 y 500 caracteres.' })
+  }
+
+  const allowedSeverities = ['leve', 'moderado', 'severo']
+  if (severity !== undefined && !allowedSeverities.includes(severity)) {
+    return res.status(400).json({ error: 'Severidad inválida.' })
   }
 
   const apiKey = process.env.OPENAI_API_KEY
