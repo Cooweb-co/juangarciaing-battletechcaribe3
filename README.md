@@ -26,3 +26,7 @@ Para probar la función serverless localmente necesitás `npx vercel dev` (usa l
 | Variable | Descripción |
 | --- | --- |
 | `OPENAI_API_KEY` | API key de OpenAI, requerida por `/api/analyze`. Configurar en Vercel (Project Settings → Environment Variables) y localmente como variable de entorno, nunca commiteada. |
+
+### Entrega final
+
+MVP completo: formulario de síntomas, selector de severidad, disclaimer obligatorio, análisis vía OpenAI, historial con caché en `localStorage`. Deploy en Vercel verificado y funcionando.
